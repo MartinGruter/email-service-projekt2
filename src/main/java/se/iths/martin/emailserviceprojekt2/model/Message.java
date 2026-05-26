@@ -12,4 +12,5 @@ public class Message implements Serializable {
     private String content;
     private String sender;
     private LocalDateTime timestamp;
+
 }
