@@ -8,25 +8,21 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install Java And configure Maven Auth
+      - name: Set up Java and Maven auth
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
           server-id: github
-          server-username: GITHUB_ACTOR
-          server-password: GITHUB_TOKEN
+          server-username: ${{ github.actor }}
+          server-password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Project
         run: mvn -B clean package
-        env:
-          GITHUB_TOKEN: ${{secrets.PASSWORD}}
-
 
