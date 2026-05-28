@@ -4,7 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {
-        "se.iths.martin"
+        "se.iths.martin.emailserviceprojekt2",
+        "se.iths.martin.springmessenger"
 })
 public class EmailServiceProjekt2Application {
 

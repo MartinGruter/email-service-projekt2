@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Maven Build
 
 on:
   push:
@@ -8,26 +8,25 @@ on:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      packages: read
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Install Java And configure Maven Auth
         uses: actions/setup-java@v4
         with:
+          distribution: temurin
           java-version: '17'
-          distribution: 'temurin'
-          cache: maven
           server-id: github
-          server-username: MartinGruter
-          server-password: GitHubToken
+          server-username: GITHUB_ACTOR
+          server-password: GITHUB_TOKEN
 
-      - name: Build with Maven
-        run: mvn clean package
+      - name: Build Project
+        run: mvn -B clean package
         env:
-          GitHubToken: ${{ secrets.GitHubToken }}
+          GITHUB_TOKEN: ${{secrets.PASSWORD}}
+
+
