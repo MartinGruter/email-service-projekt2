@@ -80,6 +80,12 @@
             <version>1.0.5</version>
         </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/MartinGruter/spring-messenger</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
