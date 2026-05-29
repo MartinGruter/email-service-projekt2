@@ -6,20 +6,18 @@ import org.springframework.stereotype.Component;
 import se.iths.martin.emailserviceprojekt2.config.RabbitConfig;
 import se.iths.martin.emailserviceprojekt2.model.Order;
 import se.iths.martin.emailserviceprojekt2.model.OrderItem;
-import se.iths.martin.springmessenger.messaging.EmailSender;
 import se.iths.martin.springmessenger.model.Email;
 import se.iths.martin.springmessenger.service.MessageService;
 
 @Component
 @RequiredArgsConstructor
 public class MessageSubscriber {
-    private EmailSender emailSender;
-    private MessageService messageService;
+    private final MessageService messageService;
 
     @RabbitListener(queues = RabbitConfig.QUEUE)
     public void subscribe(Order order) {
 
-        System.out.println("Recieved message:" + order);
+        //System.out.println("Recieved message:" + orderToMessage(order));
         Email email = new Email();
         email.setRecipient(order.getCustomerName());
         email.setSubject("Your order");
