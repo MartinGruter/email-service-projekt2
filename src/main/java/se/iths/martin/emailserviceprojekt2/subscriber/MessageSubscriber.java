@@ -17,7 +17,7 @@ public class MessageSubscriber {
     @RabbitListener(queues = RabbitConfig.QUEUE)
     public void subscribe(Order order) {
 
-        //System.out.println("Recieved message:" + orderToMessage(order));
+        System.out.println("Recieved message:" + orderToMessage(order));
         Email email = new Email();
         email.setRecipient(order.getCustomerName());
         email.setSubject("Your order");
