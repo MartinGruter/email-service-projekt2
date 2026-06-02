@@ -14,7 +14,6 @@ import se.iths.martin.springmessenger.service.MessageService;
 public class MessageSubscriber {
     private final MessageService messageService;
 
-
     @RabbitListener(queues = RabbitConfig.QUEUE)
     public void subscribe(Order order) {
 
