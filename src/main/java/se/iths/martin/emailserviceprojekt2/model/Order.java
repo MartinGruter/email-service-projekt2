@@ -7,11 +7,13 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
 @Getter
 @Setter
 public class Order {
+    private Long id;
     private LocalDateTime orderDate;
     private String customerName;
-    private List<OrderItem> orderItems;
     private BigDecimal totalPrice;
+    private List<OrderItem> items;
 }
