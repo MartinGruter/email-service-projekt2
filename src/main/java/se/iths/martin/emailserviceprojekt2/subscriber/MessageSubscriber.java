@@ -42,3 +42,4 @@ public class MessageSubscriber {
         return stringBuilder.toString();
     }
 }
+
