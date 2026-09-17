@@ -5,22 +5,24 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 import se.iths.martin.emailserviceprojekt2.model.Order;
 import se.iths.martin.emailserviceprojekt2.model.OrderItem;
+import se.iths.martin.springmessenger.model.Email;
+import se.iths.martin.springmessenger.service.MessageService;
 
 @Component
 @RequiredArgsConstructor
 public class MessageSubscriber {
 
-    //private final MessageService messageService;
+    private final MessageService messageService;
 
     @RabbitListener(queues = "new-queue")
     public void subscribe(Order order) {
         System.out.println("User: " + order.getCustomerName());
         System.out.println(orderToMessage(order));
-//        Email email = new Email();
-//        email.setRecipient(order.getCustomerName());
-//        email.setSubject("Your order");
-//        email.setMessage(orderToMessage(order));
-//        messageService.send(email);
+        Email email = new Email();
+        email.setRecipient(order.getCustomerName());
+        email.setSubject("Your order");
+        email.setMessage(orderToMessage(order));
+        messageService.send(email);
     }
 
     public String orderToMessage(Order order) {
